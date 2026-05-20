@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,15 +9,15 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg: #F7F5F1;
-  --bg2: #EEEAE3;
-  --ink: #1A1814;
-  --ink2: #4A4640;
-  --ink3: #9A948A;
-  --gold: #B8902A;
-  --gold-lt: #D4AC50;
-  --line: rgba(26,24,20,0.10);
-  --white: #FFFFFF;
+  --bg: #111110;
+  --bg2: #1C1C1A;
+  --ink: #F0EDE8;
+  --ink2: #B8B4AE;
+  --ink3: #6A6660;
+  --gold: #C9A84C;
+  --gold-lt: #E0C070;
+  --line: rgba(240,237,232,0.10);
+  --white: #1C1C1A;
 }
 
 html { scroll-behavior: smooth; }
@@ -37,7 +37,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--bg);
+  background: rgba(17,17,16,0.92);
   border-bottom: 1px solid var(--line);
   padding: 18px 48px;
   display: flex;
@@ -242,7 +242,7 @@ header {
 .station-chip {
   padding: 7px 14px;
   border: 1px solid var(--line);
-  background: var(--white);
+  background: var(--bg2);
   font-family: 'DM Sans', sans-serif;
   font-size: 0.78rem;
   font-weight: 300;
@@ -300,7 +300,7 @@ header {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.5rem;
   font-weight: 300;
-  color: #ccc;
+  color: #333;
 }
 .result-empty-sub {
   font-size: 0.8rem;
@@ -338,7 +338,7 @@ header {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.4rem;
   font-weight: 300;
-  color: #bbb;
+  color: #444;
   margin-bottom: 6px;
 }
 
@@ -360,11 +360,11 @@ header {
 }
 .listing-tbl thead th:last-child { text-align: right; }
 .listing-tbl tbody tr {
-  border-bottom: 1px solid rgba(26,24,20,0.05);
+  border-bottom: 1px solid rgba(240,237,232,0.06);
   transition: background 0.15s;
 }
 .listing-tbl tbody tr:hover {
-  background: rgba(184,144,42,0.04);
+  background: rgba(201,168,76,0.08);
 }
 .listing-tbl td {
   padding: 15px 0;
@@ -504,7 +504,7 @@ header {
   display: flex;
 }
 .modal-box {
-  background: var(--white);
+  background: #1C1C1A;
   padding: 40px;
   display: flex;
   flex-direction: column;
@@ -537,7 +537,7 @@ header {
 
 /* ── DEV NOTE ── */
 .dev-note {
-  background: #F0EDE8;
+  background: #0A0A09;
   border-top: 1px solid var(--line);
   padding: 20px 48px;
   text-align: center;
@@ -600,7 +600,7 @@ footer {
     <span class="header-phone">064-321-5243</span>
     <button class="btn-line" onclick="openQR()">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.63 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-      เพิ่มเพื่อน LINE
+      Add LINE
     </button>
   </div>
 </header>
@@ -609,14 +609,14 @@ footer {
 <section class="hero">
   <div class="hero-left">
     <p class="hero-eyebrow">Avarin Property · Bangkok</p>
-    <h1 class="hero-h1">หากคุณเบื่อหน่ายกับการ<br><em>ตามหาคอนโดที่ถูกใจ</em><br>ใช้งานเราสิ</h1>
-    <p class="hero-desc">เลือกสาย จากนั้นเลือกสถานีที่คุณต้องการ เพื่อดูห้องว่างในพื้นที่นั้น เมื่อเจอห้องที่ถูกใจแล้ว กรุณาติดต่อทางเรา</p>
-    <div class="hero-note">⚠ ไม่รับ Agent</div>
+    <h1 class="hero-h1">Browse Condos.<br><em>Find Your Match.</em></h1>
+    <p class="hero-desc">Select a transit line, then pick a station to browse available units. Once you find the right one, reach out to us directly.</p>
+    
   </div>
   <div class="hero-right">
     <div class="hero-stat">
       <div class="hero-stat-num" id="totalCount">—</div>
-      <div class="hero-stat-label">รายการที่มีข้อมูลแล้ว</div>
+      <div class="hero-stat-label">Listings Available</div>
     </div>
   </div>
 </section>
@@ -625,13 +625,13 @@ footer {
 
 <!-- LINE TABS -->
 <section class="tabs-section">
-  <div class="tabs-label">เลือกสาย</div>
+  <div class="tabs-label">Select Line</div>
   <div class="line-tabs" id="lineTabs"></div>
 </section>
 
 <!-- STATION CHIPS -->
 <section class="stations-section">
-  <div class="stations-label">เลือกสถานี</div>
+  <div class="stations-label">Select Station</div>
   <div class="station-chips" id="stationChips"></div>
 </section>
 
@@ -640,18 +640,18 @@ footer {
 <!-- RESULTS -->
 <section class="result-section" id="resultSection">
   <div class="result-empty">
-    <div class="result-empty-title">กรุณาเลือกสถานี</div>
-    <div class="result-empty-sub">เพื่อดูรายการห้องว่างในพื้นที่นั้น</div>
+    <div class="result-empty-title">Select a station above</div>
+    <div class="result-empty-sub">to browse available listings in that area</div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section class="contact-section">
   <div>
-    <div class="contact-label">ติดต่อเรา</div>
-    <h2 class="contact-h2">เมื่อเจอห้องที่ถูกใจแล้ว<br>ติดต่อหาเราได้เลย</h2>
-    <p class="contact-desc">เราไม่รับงานผ่าน Agent ทุกกรณี — ติดต่อเราโดยตรงเพื่อนัดดูห้องและรับข้อมูลเพิ่มเติม</p>
-    <div class="contact-badge">⚠ ไม่รับ Agent ทุกกรณี</div>
+    <div class="contact-label">Contact Us</div>
+    <h2 class="contact-h2">Found something you like?<br>Get in touch with us.</h2>
+    <p class="contact-desc">Contact us directly to schedule a viewing or learn more about any listing.</p>
+    
     <div class="contact-links">
       <a class="contact-link" href="tel:0643215243">
         <div class="contact-link-icon">📞</div>
@@ -663,7 +663,7 @@ footer {
       </a>
       <a class="contact-link" href="#" onclick="openQR(); return false;">
         <div class="contact-link-icon" style="font-size:0.65rem;letter-spacing:0.05em;color:#06C755">LINE</div>
-        แอด LINE โดยตรง (สแกน QR)
+        Add LINE directly (Scan QR)
       </a>
     </div>
   </div>
@@ -675,22 +675,22 @@ footer {
 
 <!-- DEV NOTE -->
 <div class="dev-note">
-  <p>🔧 เว็บไซต์กำลังอยู่ในการพัฒนา บางตัวเลือกอาจยังไม่ได้ใส่ข้อมูลห้อง<br>หากสงสัย <a href="tel:0643215243">ติดต่อเราโดยตรง</a></p>
+  <p>🔧 This website is still being developed. Some stations may not yet have listing data.<br>If in doubt, <a href="tel:0643215243">contact us directly</a>.</p>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <span class="footer-copy">© Avarin Property · ข้อมูลอัปเดตตามความเป็นจริง ณ วันที่แสดง</span>
+  <span class="footer-copy">© Avarin Property · Listings updated as of the date shown</span>
   <span class="footer-copy" id="updateBadge"></span>
 </footer>
 
 <!-- QR MODAL -->
 <div class="modal-overlay" id="qrModal" onclick="closeQR(event)">
   <div class="modal-box">
-    <div class="modal-title">แอด LINE โดยตรง</div>
+    <div class="modal-title">Add LINE Directly</div>
     <img id="qrImgModal" src="" alt="LINE QR Code">
-    <p style="font-size:0.78rem;color:#888;text-align:center">สแกน QR Code เพื่อเพิ่มเพื่อน LINE</p>
-    <button class="modal-close" onclick="closeQR()">ปิด</button>
+    <p style="font-size:0.78rem;color:#888;text-align:center">สแกน QR Code เพื่อAdd LINE</p>
+    <button class="modal-close" onclick="closeQR()">Close</button>
   </div>
 </div>
 
@@ -897,7 +897,7 @@ window.onload = () => {
   renderTabs();
   renderStations();
   updateTotal();
-  document.getElementById("updateBadge").textContent = "อัปเดต " + new Date().toLocaleDateString('th-TH', {day:'numeric',month:'short',year:'numeric'});
+  document.getElementById("updateBadge").textContent = "Updated " + new Date().toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'});
 };
 
 function updateTotal() {
@@ -915,7 +915,7 @@ function renderTabs() {
     const hasData = val.stations.some(s => s.listings.length > 0);
     const btn = document.createElement("button");
     btn.className = "line-tab" + (key === activeLine ? " active" : "") + (!hasData && key !== activeLine ? " coming" : "");
-    btn.textContent = val.label + (!hasData ? " (เร็วๆ นี้)" : "");
+    btn.textContent = val.label + (!hasData ? " (coming soon)" : "");
     if (hasData || key === activeLine) {
       btn.onclick = () => { activeLine = key; activeStation = null; renderTabs(); renderStations(); renderResult(); };
     }
@@ -952,22 +952,22 @@ function renderStations() {
 function renderResult() {
   const section = document.getElementById("resultSection");
   if (!activeStation) {
-    section.innerHTML = `<div class="result-empty"><div class="result-empty-title">กรุณาเลือกสถานี</div><div class="result-empty-sub">เพื่อดูรายการห้องว่างในพื้นที่นั้น</div></div>`;
+    section.innerHTML = `<div class="result-empty"><div class="result-empty-title">Select a station above</div><div class="result-empty-sub">to browse available listings in that area</div></div>`;
     return;
   }
   const stData = DATA[activeLine].stations.find(s => s.name === activeStation);
   const lineName = DATA[activeLine].label;
   let html = `<div class="result-header fade-in">
     <div class="result-station-name">สถานี${activeStation}</div>
-    <div class="result-meta">${lineName} · ข้อมูล ณ ${new Date().toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'numeric'})}</div>
+    <div class="result-meta">${lineName} · ข้อมูล ณ ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}</div>
   </div>`;
   if (!stData || stData.listings.length === 0) {
-    html += `<div class="no-listing-box fade-in"><strong>ไม่มีห้องว่างในขณะนี้</strong><p>ตรวจสอบสถานีอื่น หรือติดต่อเราโดยตรงเพื่อสอบถามเพิ่มเติม</p></div>`;
+    html += `<div class="no-listing-box fade-in"><strong>No listings available</strong><p>Try another station or contact us directly for more information.</p></div>`;
   } else {
     html += `<table class="listing-tbl fade-in"><thead><tr>
-      <th>ชื่อโครงการ</th>
-      <th>ขนาด</th>
-      <th>ราคา/เดือน</th>
+      <th>Project</th>
+      <th>Size</th>
+      <th>Price / Month</th>
     </tr></thead><tbody>`;
     stData.listings.forEach(l => {
       html += `<tr>
@@ -977,7 +977,7 @@ function renderResult() {
       </tr>`;
     });
     html += `</tbody></table>`;
-    html += `<p style="font-size:0.75rem;color:var(--ink3);margin-top:20px;padding-top:16px;border-top:1px solid var(--line)">ราคาข้างต้นเป็นราคาเริ่มต้น โปรดติดต่อเราเพื่อสอบถามรายละเอียดเพิ่มเติมและนัดดูห้อง</p>`;
+    html += `<p style="font-size:0.75rem;color:var(--ink3);margin-top:20px;padding-top:16px;border-top:1px solid var(--line)">Prices shown are starting rates. Contact us for full details and to arrange a viewing.</p>`;
   }
   section.innerHTML = html;
 }
