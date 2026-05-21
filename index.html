@@ -489,6 +489,68 @@ footer {
   text-transform: uppercase;
   color: rgba(255,255,255,0.6);
 }
+
+/* ── MODE TOGGLE (เช่า / ขาย) ── */
+.mode-toggle-wrap {
+  padding: 32px max(24px, calc((100vw - var(--wrap)) / 2)) 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mode-toggle {
+  display: inline-flex;
+  background: var(--panel);
+  border-radius: 999px;
+  padding: 4px;
+  gap: 4px;
+}
+.mode-btn {
+  padding: 9px 28px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: var(--ink3);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.mode-btn.active {
+  background: var(--gold);
+  color: #111;
+}
+.mode-btn:not(.active):hover {
+  color: var(--ink);
+}
+.sale-tabs-wrap {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.sale-tab {
+  padding: 8px 24px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink3);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  border-radius: 999px;
+  transition: all 0.2s;
+}
+.sale-tab.active {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+.sale-tab:not(.active):hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
 </style>
 </head>
 <body>
@@ -522,7 +584,16 @@ footer {
 
   <div class="divider"></div>
 
-  <section class="tabs-section" aria-labelledby="lineLabel">
+  <!-- MODE TOGGLE -->
+  <div class="mode-toggle-wrap">
+    <div class="mode-toggle">
+      <button class="mode-btn active" id="modeRent" onclick="setMode('rent')">🔑 เช่า</button>
+      <button class="mode-btn" id="modeSale" onclick="setMode('sale')">🏷 ขาย</button>
+    </div>
+  </div>
+
+  <!-- RENT: line tabs -->
+  <section class="tabs-section" id="rentSection" aria-labelledby="lineLabel">
     <div class="tabs-label" id="lineLabel">Select Line</div>
     <div class="line-tabs" id="lineTabs" role="tablist" aria-label="Transit lines"></div>
   </section>
@@ -530,6 +601,15 @@ footer {
   <section class="stations-section" aria-labelledby="stationLabel">
     <div class="stations-label" id="stationLabel">Select Station</div>
     <div class="station-chips" id="stationChips" aria-label="Stations"></div>
+  </section>
+
+  <!-- SALE: condo / house tabs -->
+  <section class="tabs-section" id="saleSection" style="display:none" aria-labelledby="saleLabel">
+    <div class="tabs-label" id="saleLabel">Property Type</div>
+    <div class="sale-tabs-wrap">
+      <button class="sale-tab active" id="saleTabCondo" onclick="setSaleTab('sale-condo')">🏢 คอนโด</button>
+      <button class="sale-tab" id="saleTabHouse" onclick="setSaleTab('sale-house')">🏡 บ้าน</button>
+    </div>
   </section>
 
   <div class="divider"></div>
@@ -1107,7 +1187,8 @@ function renderTabs() {
   const wrap = document.getElementById("lineTabs");
   wrap.innerHTML = "";
   for (const [key, val] of Object.entries(DATA)) {
-    const hasData = (val.isBudget || val.isSale) ? val.listings.length > 0 : val.stations.some(s => s.listings.length > 0);
+    if (val.isSale) continue; // sale tabs handled separately
+    const hasData = val.isBudget ? val.listings.length > 0 : val.stations.some(s => s.listings.length > 0);
     const btn = document.createElement("button");
     btn.className = "line-tab" + (key === activeLine ? " active" : "") + (!hasData && key !== activeLine ? " coming" : "");
     btn.textContent = val.label + (!hasData ? " (coming soon)" : "");
@@ -1254,6 +1335,75 @@ function renderResult() {
     html += `</tbody></table>`;
     html += `<p class="result-note">Prices shown are starting rates. Contact us for full details and to arrange a viewing.</p>`;
   }
+  section.innerHTML = html;
+}
+
+
+// ── MODE: rent / sale ──
+let currentMode = 'rent';
+let activeSaleLine = 'sale-condo';
+
+function setMode(mode) {
+  currentMode = mode;
+  activeStation = null;
+
+  document.getElementById('modeRent').classList.toggle('active', mode === 'rent');
+  document.getElementById('modeSale').classList.toggle('active', mode === 'sale');
+  document.getElementById('rentSection').style.display = mode === 'rent' ? '' : 'none';
+  document.getElementById('saleSection').style.display = mode === 'sale' ? '' : 'none';
+
+  const stationSection = document.querySelector('.stations-section');
+  if (mode === 'sale') {
+    stationSection.style.display = 'none';
+    renderSale(activeSaleLine);
+  } else {
+    stationSection.style.display = '';
+    activeLine = 'mrt-blue';
+    renderTabs();
+    renderStations();
+    renderResult();
+  }
+}
+
+function setSaleTab(key) {
+  activeSaleLine = key;
+  document.getElementById('saleTabCondo').classList.toggle('active', key === 'sale-condo');
+  document.getElementById('saleTabHouse').classList.toggle('active', key === 'sale-house');
+  renderSale(key);
+}
+
+function renderSale(key) {
+  const section = document.getElementById('resultSection');
+  const line = DATA[key];
+  const listings = line.listings;
+  const dateStr = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+  const title = key === 'sale-condo' ? 'คอนโดขาย' : 'บ้านขาย';
+
+  let html = `<div class="result-header fade-in">
+    <div class="result-station-name">${title}</div>
+    <div class="result-meta">${listings.length} listings · Updated ${dateStr}</div>
+  </div>`;
+
+  html += `<table class="listing-tbl fade-in"><thead><tr>
+    <th>Project</th>
+    <th>Size</th>
+    <th>Beds / Baths</th>
+    <th>Area / Station</th>
+    <th>Sale Price</th>
+  </tr></thead><tbody>`;
+
+  listings.slice().sort((a,b) => a.price - b.price).forEach(l => {
+    html += `<tr>
+      <td class="col-name">${l.name}</td>
+      <td class="col-size">${l.size || '—'}</td>
+      <td class="col-size">${l.beds || '—'}</td>
+      <td class="col-size">${l.area || '—'}</td>
+      <td class="col-price">${Number(l.price).toLocaleString()}<span>฿</span></td>
+    </tr>`;
+  });
+
+  html += `</tbody></table>`;
+  html += `<p class="result-note">Prices shown are as listed. Contact us for full details and to arrange a viewing.</p>`;
   section.innerHTML = html;
 }
 
