@@ -108,10 +108,10 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 
 /* PROPERTY HERO */
 .prop-hero{
-  display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:260px;max-height:300px;
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
 }
 .prop-hero-img{
-  position:relative;overflow:hidden;max-height:300px;
+  position:relative;overflow:hidden;aspect-ratio:4/3;
 }
 .prop-hero-img img{
   width:100%;height:100%;object-fit:cover;display:block;
@@ -126,8 +126,8 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 }
 .prop-hero-info{
   display:flex;flex-direction:column;justify-content:center;
-  padding:20px 28px;background:rgba(6,8,16,0.85);
-  border-left:1px solid rgba(200,168,74,0.15);overflow-y:auto;
+  padding:24px 32px;background:rgba(6,8,16,0.85);
+  border-left:1px solid rgba(200,168,74,0.15);
 }
 .prop-type-label{
   font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;
@@ -861,14 +861,14 @@ const FEATURED_PROPS = [
   {
     id: "condo-47k",
     badge: "For Rent (เช่า)",
-    name: "City View Condo",
-    nameTh: "คอนโดวิวเมือง",
+    name: "Tonglor Tower",
+    nameTh: "ทองหล่อ ทาวเวอร์",
     price: "47,000 ฿ / mo",
     priceTh: "ราคา 47,000 บาท/เดือน",
     tags: ["🏙 City View (วิวเมือง)", "🔥 Fireplace Living Room", "🛏 Multiple Bedrooms (หลายห้องนอน)"],
     thumb: condo47_1,
     coming: false,
-    page: "city-view-condo.html",
+    page: "tonglor-tower.html",
   },
 ];
 
